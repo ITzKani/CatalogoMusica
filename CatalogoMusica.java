@@ -39,8 +39,8 @@ public class CatalogoMusica{
 
     @Override
     public String toString() {
-        return "CatalogoMusica [getNombreCan()=" + getNombreCan() + ", getArtista()=" + getArtista() + ", getGenero()="
-                + getGenero() + ", getId()=" + getId() + "]";
+        return "CatalogoMusica Cancion: " + getNombreCan() + " Artista " + getArtista() + " Genero: "
+                + getGenero() + " ID: " + getId() + " \n";
     }
 
     

@@ -21,6 +21,7 @@ public class MainCatalogoMusica{
             
             Lista.add(i, new CatalogoMusica(id, nombreCan, artista, genero));
             System.out.println(Lista.toString());
+            //System.out.println(Lista.get(i));
             
             
             System.out.print("Quieres agregar otra cancion si/no: ");
@@ -29,5 +30,7 @@ public class MainCatalogoMusica{
             id++;
             i++;
         }while(!(opt.equals("no")));
+        
+        fn.close();
     }
 }
