@@ -1,40 +1,33 @@
+import java.util.Scanner;
 class Login{
-    private String user, password;
+    
+    public void Logger(){
+    
+    Scanner fn = new Scanner(System.in);
+    String imputuser, imputpassword;
+    LoginFuncion lg = new LoginFuncion();
 
-    public Login(){
-        
-    }
+    //Inicio del bucle do-while
+    do{
+    
+    System.out.println("--Catalogo de musica Login--");
+    System.out.print("Ingresa tu usuario: ");
+    imputuser = fn.nextLine();
 
-    public String getUser() {
-        return user;
-    }
+    System.out.print("Ingresa tu contraseña: ");
+    imputpassword = fn.nextLine();
 
-    public void setUser(String user) {
-        this.user = user;
-    }
+    lg.setUser(imputuser);
+    lg.setPassword(imputpassword);
 
-    public String getPassword() {
-        return password;
-    }
+    lg.limpiarConsola();
+    lg.validacion();
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
-    public static void limpiarConsola() {  
-        System.out.print("\033[H\033[2J");  
-        System.out.flush();  
-    }  
+    
 
-    public void validacion(){
-        if(user.equals("root") && password.equals("12345a")){
-            System.out.println("Bienvenido a tu aplicacion");
-            System.out.println("Catalogo de musica");
-        }
-
-        else{
-            System.out.println("Error: informacion incorrecta.");
-        }
+    }while(!(lg.getUser().equals("root") && lg.getPassword().equals("12345a")));
+    
     
     }
 }
