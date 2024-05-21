@@ -37,9 +37,13 @@ public class CatalogoMusica{
         this.id = id;
     }
 
+    public String mostrarCatalogo(){
+        return "Cancion: " + getNombreCan() + "\n" + "Artista: " + getArtista() + "\n" + "Genero: " + getGenero() + "\n" + "ID: " + getId();
+    }
+
     @Override
     public String toString() {
-        return "CatalogoMusica Cancion: " + getNombreCan() + " Artista " + getArtista() + " Genero: "
+        return "CatalogoMusica Cancion: " + getNombreCan() + " Artista: " + getArtista() + " Genero: "
                 + getGenero() + " ID: " + getId() + " \n";
     }
 
