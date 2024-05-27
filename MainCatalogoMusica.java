@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,6 +21,7 @@ public class MainCatalogoMusica {
         lg.Logger();
 
         // * Menu principal
+        
 
         MenuPrincipal mp = new MenuPrincipal();
         do {
@@ -65,27 +67,37 @@ public class MainCatalogoMusica {
                 } while (!(opt.equals("n")));
                 break;
 
+            // * 2) Consultar cancion
             case 2:
                 int idsearch;
                 do {
-
+                    
+                    try {
                     System.out.println("Consultorio de canciones");
                     System.out.println("-------------------------------");
                     System.out.println("*Escribe la ID de la cancion que deseas buscar*");
                     idsearch = fn2.nextInt();
+                    
 
-                    System.out.println("-------------------------------");
-                    System.out.println("ID: " + Lista.get(idsearch - 1).getId());
-                    System.out.println("Cancion: " + Lista.get(idsearch - 1).getNombreCan());
-                    System.out.println("Artista: " + Lista.get(idsearch - 1).getArtista());
-                    System.out.println("Genero: " + Lista.get(idsearch - 1).getGenero());
-                    System.out.println("-------------------------------");
+                        
+                            System.out.println("-------------------------------");
+                            System.out.println("ID: " + Lista.get(idsearch - 1).getId());
+                            System.out.println("Cancion: " + Lista.get(idsearch - 1).getNombreCan());
+                            System.out.println("Artista: " + Lista.get(idsearch - 1).getArtista());
+                            System.out.println("Genero: " + Lista.get(idsearch - 1).getGenero());
+                            System.out.println("-------------------------------");
+                            
+                        } catch(IndexOutOfBoundsException e){
+                            System.out.println("Error: Esa ID no existe.");
+                        } catch (InputMismatchException e) {
+                            System.out.println("Error: Esa ID no existe.");
+                        }
+                        
+                        System.out.print("Buscar otra cancion y/n: ");
+                        fn2.nextLine();
+                        opt2 = fn2.nextLine();
 
-                    System.out.print("Buscar otra cancion y/n: ");
-                    fn2.nextLine();
-                    opt2 = fn2.nextLine();
-
-                    System.out.println(opt2);
+                    //System.out.println(opt2);
                 } while (!(opt2.equals("n")));
                 break;
 
