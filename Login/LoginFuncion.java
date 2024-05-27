@@ -1,8 +1,8 @@
-class LoginFuncion{
+class LoginFuncion {
     private String user, password;
 
-    public LoginFuncion(){
-        
+    public LoginFuncion() {
+
     }
 
     public String getUser() {
@@ -21,19 +21,19 @@ class LoginFuncion{
         this.password = password;
     }
 
-    public static void limpiarConsola() {  
-        System.out.print("\033[H\033[2J");  
-        System.out.flush();  
-    }  
+    public static void limpiarConsola() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
 
-    public void validacion(){
-        if(user.equals("root") && password.equals("12345a")){
-           
+    public void validacion() {
+        if (user.equals("root") && password.equals("12345a")) {
+
         }
 
-        else{
+        else {
             System.out.println("Error: informacion incorrecta.");
         }
-    
+
     }
 }

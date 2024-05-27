@@ -2,8 +2,6 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import javax.xml.catalog.CatalogException;
-
 public class MainCatalogoMusica {
 
     Scanner fn2 = new Scanner(System.in);
@@ -125,8 +123,19 @@ public class MainCatalogoMusica {
                 mlp.actualizarCancion();
                 break;
 
-            // * 5)
+            // * 5) Eliminar cancion
+            case 5:
 
+                mlp.eliminarCancion();
+                break;
+
+            // * 6) Cerrar sesion
+            case 6:
+
+                System.out.println("Cerrando sesion...");
+                break;
+
+            // * Opcion default
             default:
                 break;
         }
@@ -164,17 +173,24 @@ public class MainCatalogoMusica {
                     System.out.print("Ingresa el genero de la cancion: ");
                     genero = fn2.nextLine();
 
-                    Lista.remove(idsearch);
-                    Lista.add(idsearch, new CatalogoMusica(id - 1, nombreCan, artista, genero));
+                    if (nombreCan.equals("") || artista.equals("") || genero.equals("")) {
+                        System.out.println("Error: No puedes dejar espacios en blanco.");
+                    }
 
-                    System.out.println("-------------------------------");
-                    System.out.println("Se actualizo la cancion con ID: " + Lista.get(idsearch).getId());
-                    System.out.println("-------------------------------");
-                    System.out.println("ID: " + Lista.get(idsearch).getId());
-                    System.out.println("Cancion: " + Lista.get(idsearch).getNombreCan());
-                    System.out.println("Artista: " + Lista.get(idsearch).getArtista());
-                    System.out.println("Genero: " + Lista.get(idsearch).getGenero());
-                    System.out.println("-------------------------------");
+                    else {
+                        Lista.remove(idsearch);
+                        Lista.add(idsearch, new CatalogoMusica(id - 1, nombreCan, artista, genero));
+
+                        System.out.println("-------------------------------");
+                        System.out.println("Se actualizo la cancion con ID: " + Lista.get(idsearch).getId());
+                        System.out.println("-------------------------------");
+                        System.out.println("ID: " + Lista.get(idsearch).getId());
+                        System.out.println("Cancion: " + Lista.get(idsearch).getNombreCan());
+                        System.out.println("Artista: " + Lista.get(idsearch).getArtista());
+                        System.out.println("Genero: " + Lista.get(idsearch).getGenero());
+                        System.out.println("-------------------------------");
+
+                    }
                 } else {
                     System.out.println("Error: Esa ID no existe");
                 }
@@ -185,6 +201,32 @@ public class MainCatalogoMusica {
             }
 
             System.out.print("Quieres actualizar otra cancion y/n: ");
+            opt = fn2.nextLine();
+
+        } while (!(opt.equals("n")));
+    }
+
+    public void eliminarCancion() {
+        do {
+            try {
+
+                System.out.print("Ingresa la ID de la cancion que quieres eliminar: ");
+                int idsearch = fn2.nextInt();
+                idsearch = idsearch - 1;
+
+                if (idsearch >= 0 && idsearch < id - 1) {
+                    Lista.remove(idsearch);
+                    System.out.println("Se elimino la cancion con ID: " + (idsearch + 1));
+                }
+
+                else {
+                    System.out.println("Error: Esa ID no existe.");
+                }
+            } catch (Exception e) {
+                System.out.println("Error: Esa ID no existe.");
+            }
+            System.out.print("Quieres eliminar otra cancion y/n: ");
+            fn2.nextLine();
             opt = fn2.nextLine();
 
         } while (!(opt.equals("n")));

@@ -1,36 +1,31 @@
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
-class MenuPrincipal{
+class MenuPrincipal {
 
     int optmenu;
-    
-    public MenuPrincipal(){
-        
+
+    public MenuPrincipal() {
+
     }
 
-    public void mostrarMenu(){
-        
-            
-            Scanner snmenu = new Scanner(System.in);
-            System.out.println("---------------------------");
-            System.out.println("Catalogo de musica");
-            System.out.println("---------------------------");
-            System.out.println("1. Agregar cancion");
-            System.out.println("2. Consultar cancion");
-            System.out.println("3. Mostrar catalogo"); // Enrique 
-            System.out.println("4. Actualizar cancion");
-            System.out.println("5. Eliminar"); // Enrique
-            System.out.println("6. Cerrar sesion");
-            System.out.println("---------------------------");
-            System.out.print("Selecciona una opcion: ");
-            
-            optmenu = snmenu.nextInt();
-        
-        
- 
-    } 
-    
+    public void mostrarMenu() {
+
+        Scanner snmenu = new Scanner(System.in);
+        System.out.println("---------------------------");
+        System.out.println("Catalogo de musica");
+        System.out.println("---------------------------");
+        System.out.println("1. Agregar cancion");
+        System.out.println("2. Consultar cancion");
+        System.out.println("3. Mostrar catalogo"); // Enrique
+        System.out.println("4. Actualizar cancion");
+        System.out.println("5. Eliminar"); // Enrique
+        System.out.println("6. Cerrar sesion");
+        System.out.println("---------------------------");
+        System.out.print("Selecciona una opcion: ");
+
+        optmenu = snmenu.nextInt();
+
+    }
 
     public int getOptmenu() {
         return optmenu;
