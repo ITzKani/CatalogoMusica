@@ -10,8 +10,7 @@ class MenuPrincipal{
     }
 
     public void mostrarMenu(){
-        do{
-        try {
+        
             
             Scanner snmenu = new Scanner(System.in);
             System.out.println("---------------------------");
@@ -27,12 +26,11 @@ class MenuPrincipal{
             System.out.print("Selecciona una opcion: ");
             
             optmenu = snmenu.nextInt();
-        } catch (InputMismatchException e) {
-            System.out.println("*Error: Tienes que elegir un numero del 1 al 6*");
-        }
         
-    }while(!(optmenu==6));
-    }
+        
+ 
+    } 
+    
 
     public int getOptmenu() {
         return optmenu;

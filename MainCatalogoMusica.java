@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import javax.xml.catalog.CatalogException;
+
 public class MainCatalogoMusica {
 
     Scanner fn2 = new Scanner(System.in);
@@ -23,13 +25,26 @@ public class MainCatalogoMusica {
 
         MenuPrincipal mp = new MenuPrincipal();
         do {
-            mp.mostrarMenu();
+            try {
+
+                mp.mostrarMenu();
+
+            } catch (NullPointerException e) {
+                System.out.println("Error: Elige una opcion valida.");
+                optmenu = 0;
+            } catch (InputMismatchException e) {
+                System.out.println("Error: Elige una opcion valida.");
+                optmenu = 0;
+            }
+
             optmenu = mp.getOptmenu();
-
-            // * Switch del menu principal
-
-            mlp.menuSwitch();
-        } while ((opt.equals("n") || optmenu == 3 && opt.equals("y")));
+            if (optmenu > 0 && optmenu <= 6) {
+                // * Switch del menu principal
+                mlp.menuSwitch();
+            } else {
+                System.out.println("Error: Elige una opcion valida.");
+            }
+        } while (!(optmenu == 6));
     }
 
     // * Metodo switch del menu principal
@@ -76,12 +91,13 @@ public class MainCatalogoMusica {
                         System.out.println("-------------------------------");
                         System.out.println("*Escribe la ID de la cancion que deseas buscar*");
                         idsearch = fn2.nextInt();
+                        idsearch = idsearch - 1;
 
                         System.out.println("-------------------------------");
-                        System.out.println("ID: " + Lista.get(idsearch - 1).getId());
-                        System.out.println("Cancion: " + Lista.get(idsearch - 1).getNombreCan());
-                        System.out.println("Artista: " + Lista.get(idsearch - 1).getArtista());
-                        System.out.println("Genero: " + Lista.get(idsearch - 1).getGenero());
+                        System.out.println("ID: " + Lista.get(idsearch).getId());
+                        System.out.println("Cancion: " + Lista.get(idsearch).getNombreCan());
+                        System.out.println("Artista: " + Lista.get(idsearch).getArtista());
+                        System.out.println("Genero: " + Lista.get(idsearch).getGenero());
                         System.out.println("-------------------------------");
 
                     } catch (IndexOutOfBoundsException e) {
@@ -103,20 +119,74 @@ public class MainCatalogoMusica {
                 mlp.mostrarCatalogo();
                 break;
 
+            // * 4) Actualizar cancion
+            case 4:
+
+                mlp.actualizarCancion();
+                break;
+
+            // * 5)
+
             default:
                 break;
         }
     }
 
     // * Metodo de mostrar catalogo (opcion 3 del menu)
-
     public void mostrarCatalogo() {
         do {
             System.out.println("-------------------------------");
             System.out.println("Catalogo de canciones");
+            System.out.println("Luna");
             System.out.print("Salir del catalogo y/n: ");
             opt = fn2.nextLine();
         } while ((opt.equals("n")));
 
+    }
+
+    // * Metodo para actualizar una cancion ya asignada (opcion 4 del menu)
+    public void actualizarCancion() {
+        do {
+            int idsearch;
+
+            try {
+                System.out.print("Ingresa la ID de la cancion que deseas modificar: ");
+                idsearch = fn2.nextInt();
+                idsearch = idsearch - 1;
+                fn2.nextLine();
+
+                if (idsearch > -1 && idsearch < id - 1) {
+
+                    System.out.print("Ingresa el nombre de la cancion: ");
+                    nombreCan = fn2.nextLine();
+                    System.out.print("Ingresa el artista de la cancion: ");
+                    artista = fn2.nextLine();
+                    System.out.print("Ingresa el genero de la cancion: ");
+                    genero = fn2.nextLine();
+
+                    Lista.remove(idsearch);
+                    Lista.add(idsearch, new CatalogoMusica(id - 1, nombreCan, artista, genero));
+
+                    System.out.println("-------------------------------");
+                    System.out.println("Se actualizo la cancion con ID: " + Lista.get(idsearch).getId());
+                    System.out.println("-------------------------------");
+                    System.out.println("ID: " + Lista.get(idsearch).getId());
+                    System.out.println("Cancion: " + Lista.get(idsearch).getNombreCan());
+                    System.out.println("Artista: " + Lista.get(idsearch).getArtista());
+                    System.out.println("Genero: " + Lista.get(idsearch).getGenero());
+                    System.out.println("-------------------------------");
+                } else {
+                    System.out.println("Error: Esa ID no existe");
+                }
+
+            } catch (Exception e) {
+                System.out.println("Error: Esa ID no existe");
+                fn2.nextLine();
+            }
+
+            System.out.print("Quieres actualizar otra cancion y/n: ");
+            opt = fn2.nextLine();
+
+        } while (!(opt.equals("n")));
     }
 }
