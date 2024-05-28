@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class MainCatalogoMusica {
@@ -155,17 +156,35 @@ public class MainCatalogoMusica {
     }
 
     // * Metodo de mostrar catalogo (opcion 3 del menu)
+    int optalbum;
     public void mostrarCatalogo() {
         do {
             System.out.println("-------------------------------");
             System.out.println("Catalogo de canciones");
-            System.out.println("Luna");
-            System.out.print("Salir del catalogo y/n: ");
-            opt = fn2.nextLine();
-        } while ((opt.equals("n")));
-
+        System.out.println("***************************");
+        System.out.println("1. Pop");
+        System.out.println("2. Rock");
+        System.out.println("3. Rock and Roll");
+        System.out.println("4. Rancheras");
+        System.out.println("5. Salsa");
+        System.out.println("6. Salir");
+        System.out.println("***************************");
+        System.out.print("Selecciona una opcion: ");
+        optalbum = fn2.nextInt();
+        switch (optalbum) {
+            case 1:
+            System.out.println("**********************************");
+                System.out.println("Bienvenido al contenido de Pop");
+                List<AlbumCatalogo> album = new ArrayList<AlbumCatalogo>();
+                album.add(new AlbumCatalogo(1,"Amiga mia ", "Alejandro Sanz ", "Pop "));
+                album.add(new AlbumCatalogo(2, "Enrique Iglesias", "El perdedor", "Pop"));
+                album.add(new AlbumCatalogo(1, "Pepe Agular", "Autobus", "Pop"));
+                break;
+            }
+                System.out.print("Salir del catalogo y/n: ");
+                opt = fn2.nextLine();
+            } while ((opt.equals("n")));
     }
-
     // * Metodo para actualizar una cancion ya asignada (opcion 4 del menu)
     public void actualizarCancion() {
         do {
