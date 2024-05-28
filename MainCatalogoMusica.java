@@ -7,7 +7,6 @@ public class MainCatalogoMusica {
     Scanner fn2 = new Scanner(System.in);
     String nombreCan, artista, genero;
     int id = 1, i = 0;
-    // int opt2;
     static String opt, opt2;
     static int optmenu;
     ArrayList<CatalogoMusica> Lista = new ArrayList<>();
@@ -52,13 +51,13 @@ public class MainCatalogoMusica {
 
             // * 1) Agregar cancion
             case 1:
-                
+
                 mlp.agregarCancion();
                 break;
 
             // * 2) Consultar cancion
             case 2:
-                
+
                 mlp.consultarCancion();
                 break;
 
@@ -92,8 +91,10 @@ public class MainCatalogoMusica {
         }
     }
 
+
+
     // * Metodo para agregar cancion (opciones 1 del menu)
-    public void agregarCancion(){
+    public void agregarCancion() {
         do {
             System.out.print("Ingresa el nombre de la cancion: ");
             nombreCan = fn2.nextLine();
@@ -123,7 +124,7 @@ public class MainCatalogoMusica {
     }
 
     // * Metodo para consultar canciones (opcion 2 del menu)
-    public void consultarCancion(){
+    public void consultarCancion() {
         int idsearch;
         do {
             try {
@@ -173,10 +174,10 @@ public class MainCatalogoMusica {
             try {
                 System.out.print("Ingresa la ID de la cancion que deseas modificar: ");
                 idsearch = fn2.nextInt();
-                idsearch = idsearch-1;
+                idsearch = idsearch - 1;
                 fn2.nextLine();
 
-                if (idsearch>=0 && idsearch<id-1) {
+                if (idsearch >= 0 && idsearch < id - 1) {
 
                     System.out.print("Ingresa el nombre de la cancion: ");
                     nombreCan = fn2.nextLine();
@@ -191,7 +192,7 @@ public class MainCatalogoMusica {
 
                     else {
                         Lista.remove(idsearch);
-                        Lista.add(idsearch, new CatalogoMusica(idsearch+1, nombreCan, artista, genero));
+                        Lista.add(idsearch, new CatalogoMusica(idsearch + 1, nombreCan, artista, genero));
 
                         System.out.println("-------------------------------");
                         System.out.println("Se actualizo la cancion con ID: " + Lista.get(idsearch).getId());
@@ -219,7 +220,7 @@ public class MainCatalogoMusica {
     }
 
     // * Metodo para eliminar una cancion (opcion 5 del menu)
-    // ! BETA
+    // ! ALPHA
     public void eliminarCancion() {
         do {
             try {
@@ -228,9 +229,9 @@ public class MainCatalogoMusica {
                 int idsearch = fn2.nextInt();
                 idsearch = idsearch - 1;
 
-                if (idsearch>=0 && idsearch<id-1) {
+                if (idsearch >= 0 && idsearch < id - 1) {
                     Lista.remove(idsearch);
-                    System.out.println("Se elimino la cancion con ID: " + (idsearch+1));
+                    System.out.println("Se elimino la cancion con ID: " + (idsearch + 1));
                 }
 
                 else {
