@@ -4,23 +4,24 @@ import java.util.Scanner;
 
 public class Funciones {
 
-    Scanner fn2 = new Scanner(System.in);
+    Scanner sn = new Scanner(System.in);
     private String nombreCan, artista, genero;
     private int id = 1, i = 0;
     private static String opt, opt2;
     ArrayList<CatalogoMusica> Lista = new ArrayList<>();
 
+    // * Metodo constructor 
     public Funciones() {}
 
     // * Metodo para agregar cancion (opciones 1 del menu)
     public void agregarCancion() {
         do {
             System.out.print("Ingresa el nombre de la cancion: ");
-            nombreCan = fn2.nextLine();
+            nombreCan = sn.nextLine();
             System.out.print("Ingresa el artista de la cancion: ");
-            artista = fn2.nextLine();
+            artista = sn.nextLine();
             System.out.print("Ingresa el genero de la cancion: ");
-            genero = fn2.nextLine();
+            genero = sn.nextLine();
 
             Lista.add(i, new CatalogoMusica(id, nombreCan, artista, genero));
 
@@ -35,7 +36,7 @@ public class Funciones {
             }
 
             System.out.print("Quieres agregar otra cancion y/n: ");
-            opt = fn2.nextLine();
+            opt = sn.nextLine();
 
             id++;
             i++;
@@ -50,7 +51,7 @@ public class Funciones {
                 System.out.println("Consultorio de canciones");
                 System.out.println("-------------------------------");
                 System.out.println("*Escribe la ID de la cancion que deseas buscar*");
-                idsearch = fn2.nextInt();
+                idsearch = sn.nextInt();
                 idsearch = idsearch - 1;
 
                 System.out.println("-------------------------------");
@@ -67,8 +68,8 @@ public class Funciones {
             }
 
             System.out.print("Buscar otra cancion y/n: ");
-            fn2.nextLine();
-            opt2 = fn2.nextLine();
+            sn.nextLine();
+            opt2 = sn.nextLine();
 
         } while (!(opt2.equals("n")));
     }
@@ -80,7 +81,7 @@ public class Funciones {
             System.out.println("Catalogo de canciones");
             System.out.println("Luna");
             System.out.print("Salir del catalogo y/n: ");
-            opt = fn2.nextLine();
+            opt = sn.nextLine();
         } while ((opt.equals("n")));
 
     }
@@ -92,18 +93,18 @@ public class Funciones {
 
             try {
                 System.out.print("Ingresa la ID de la cancion que deseas modificar: ");
-                idsearch = fn2.nextInt();
+                idsearch = sn.nextInt();
                 idsearch = idsearch - 1;
-                fn2.nextLine();
+                sn.nextLine();
 
                 if (idsearch >= 0 && idsearch < id - 1) {
 
                     System.out.print("Ingresa el nombre de la cancion: ");
-                    nombreCan = fn2.nextLine();
+                    nombreCan = sn.nextLine();
                     System.out.print("Ingresa el artista de la cancion: ");
-                    artista = fn2.nextLine();
+                    artista = sn.nextLine();
                     System.out.print("Ingresa el genero de la cancion: ");
-                    genero = fn2.nextLine();
+                    genero = sn.nextLine();
 
                     if (nombreCan.equals("") || artista.equals("") || genero.equals("")) {
                         System.out.println("Error: No puedes dejar espacios en blanco.");
@@ -129,11 +130,11 @@ public class Funciones {
 
             } catch (Exception e) {
                 System.out.println("Error: Esa ID no existe");
-                fn2.nextLine();
+                sn.nextLine();
             }
 
             System.out.print("Quieres actualizar otra cancion y/n: ");
-            opt = fn2.nextLine();
+            opt = sn.nextLine();
 
         } while (!(opt.equals("n")));
     }
@@ -145,7 +146,7 @@ public class Funciones {
             try {
 
                 System.out.print("Ingresa la ID de la cancion que quieres eliminar: ");
-                int idsearch = fn2.nextInt();
+                int idsearch = sn.nextInt();
                 idsearch = idsearch - 1;
 
                 if (idsearch >= 0 && idsearch < id - 1) {
@@ -160,8 +161,8 @@ public class Funciones {
                 System.out.println("Error: Esa ID no existe.");
             }
             System.out.print("Quieres eliminar otra cancion y/n: ");
-            fn2.nextLine();
-            opt = fn2.nextLine();
+            sn.nextLine();
+            opt = sn.nextLine();
 
         } while (!(opt.equals("n")));
     }
