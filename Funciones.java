@@ -10,8 +10,9 @@ public class Funciones {
     private static String opt, opt2;
     ArrayList<CatalogoMusica> Lista = new ArrayList<>();
 
-    // * Metodo constructor 
-    public Funciones() {}
+    // * Metodo constructor
+    public Funciones() {
+    }
 
     // * Metodo para agregar cancion (opciones 1 del menu)
     public void agregarCancion() {
@@ -88,10 +89,22 @@ public class Funciones {
 
     // * Metodo para actualizar una cancion ya asignada (opcion 4 del menu)
     public void actualizarCancion() {
-        do {
-            int idsearch;
+        System.out.println("-------------------------------");
 
+        do {
             try {
+                System.out.println("**Lista de canciones**");
+                System.out.println("-------------------------------");
+                for (int in2 = 0; in2 < Lista.size(); in2++) {
+                    System.out.println("ID: " + Lista.get(in2).getId());
+                    System.out.println("Cancion: " + Lista.get(in2).getNombreCan());
+                    System.out.println("Artista: " + Lista.get(in2).getArtista());
+                    System.out.println("Genero: " + Lista.get(in2).getGenero());
+                    System.out.println("-------------------------------");
+                }
+
+                int idsearch;
+
                 System.out.print("Ingresa la ID de la cancion que deseas modificar: ");
                 idsearch = sn.nextInt();
                 idsearch = idsearch - 1;
