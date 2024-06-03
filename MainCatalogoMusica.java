@@ -9,33 +9,39 @@ public class MainCatalogoMusica {
 
     public static void main(String[] args) {
 
-        // * Objeto de inicio de sesion
-        lg.Logger();
-
-        // * Menu principal
         do {
-            try {
 
-                mp.mostrarMenu();
+            // * Objeto de inicio de sesion
+            lg.Logger();
 
-            } catch (NullPointerException e) {
-                System.out.println("Error: Elige una opcion valida.");
-                optmenu = 0;
-            } catch (InputMismatchException e) {
-                System.out.println("Error: Elige una opcion valida.");
-                optmenu = 0;
-            }
+            // * Menu principal
+            do {
+                try {
 
-            optmenu = mp.getOptmenu();
-            if (optmenu > 0 && optmenu <= 6) {
-                // * Switch del menu principal
-                menuSwitch();
-            } else {
-                System.out.println("Error: Elige una opcion valida.");
-            }
-        } while (!(optmenu == 6));
+                    mp.mostrarMenu();
+
+                } catch (NullPointerException e) {
+                    System.out.println("Error: Elige una opcion valida.");
+                    optmenu = 0;
+                } catch (InputMismatchException e) {
+                    System.out.println("Error: Elige una opcion valida.");
+                    optmenu = 0;
+                }
+
+                optmenu = mp.getOptmenu();
+                if (optmenu > 0 && optmenu <= 6) {
+
+                    // * Metodo switch del menu principal
+                    menuSwitch();
+                }
+
+                else {
+                    System.out.println("Error: Elige una opcion valida.");
+                }
+
+            } while (!(optmenu == 6));
+        } while ((optmenu == 6));
     }
-
 
     // * Metodo switch del menu principal
     public static void menuSwitch() {

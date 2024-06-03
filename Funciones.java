@@ -9,6 +9,7 @@ public class Funciones {
     private int id = 1, i = 0;
     private static String opt, opt2;
     ArrayList<CatalogoMusica> Lista = new ArrayList<>();
+    CatalogoMusica cm = new CatalogoMusica(id, nombreCan, artista, genero);
 
     // * Metodo constructor
     public Funciones() {
@@ -17,6 +18,7 @@ public class Funciones {
     // * Metodo para agregar cancion (opciones 1 del menu)
     public void agregarCancion() {
         do {
+            limpiarConsola();
             System.out.print("Ingresa el nombre de la cancion: ");
             nombreCan = sn.nextLine();
             System.out.print("Ingresa el artista de la cancion: ");
@@ -26,6 +28,8 @@ public class Funciones {
 
             Lista.add(i, new CatalogoMusica(id, nombreCan, artista, genero));
 
+            limpiarConsola();
+            System.out.println("Se agrego la cancion con ID: " + id);
             System.out.println("-------------------------------");
 
             for (int in = 0; in <= i; in++) {
@@ -49,12 +53,14 @@ public class Funciones {
         int idsearch;
         do {
             try {
-                System.out.println("Consultorio de canciones");
+                limpiarConsola();
+                System.out.println("**Consultorio de canciones**");
                 System.out.println("-------------------------------");
                 System.out.println("*Escribe la ID de la cancion que deseas buscar*");
                 idsearch = sn.nextInt();
                 idsearch = idsearch - 1;
 
+                limpiarConsola();
                 System.out.println("-------------------------------");
                 System.out.println("ID: " + Lista.get(idsearch).getId());
                 System.out.println("Cancion: " + Lista.get(idsearch).getNombreCan());
@@ -78,11 +84,26 @@ public class Funciones {
     // * Metodo de mostrar catalogo (opcion 3 del menu)
     public void mostrarCatalogo() {
         do {
+            limpiarConsola();
+
+            if (Lista.size() > 0) {
+                System.out.println("**Lista de canciones creadas**");
+                System.out.println("-------------------------------");
+                for (int in2 = 0; in2 < Lista.size(); in2++) {
+                    System.out.println("ID: " + Lista.get(in2).getId());
+                    System.out.println("Cancion: " + Lista.get(in2).getNombreCan());
+                    System.out.println("Artista: " + Lista.get(in2).getArtista());
+                    System.out.println("Genero: " + Lista.get(in2).getGenero());
+                    System.out.println("-------------------------------");
+                }
+            }
+
+            System.out.println("**Catalogo de canciones**");
             System.out.println("-------------------------------");
-            System.out.println("Catalogo de canciones");
-            System.out.println("Luna");
+            cm.mostrarCatalogo();
             System.out.print("Salir del catalogo y/n: ");
             opt = sn.nextLine();
+            limpiarConsola();
         } while ((opt.equals("n")));
 
     }
@@ -92,56 +113,68 @@ public class Funciones {
         System.out.println("-------------------------------");
 
         do {
+            limpiarConsola();
             try {
                 System.out.println("**Lista de canciones**");
                 System.out.println("-------------------------------");
-                for (int in2 = 0; in2 < Lista.size(); in2++) {
-                    System.out.println("ID: " + Lista.get(in2).getId());
-                    System.out.println("Cancion: " + Lista.get(in2).getNombreCan());
-                    System.out.println("Artista: " + Lista.get(in2).getArtista());
-                    System.out.println("Genero: " + Lista.get(in2).getGenero());
-                    System.out.println("-------------------------------");
+                if (Lista.size() > 0) {
+                    for (int in2 = 0; in2 < Lista.size(); in2++) {
+                        System.out.println("ID: " + Lista.get(in2).getId());
+                        System.out.println("Cancion: " + Lista.get(in2).getNombreCan());
+                        System.out.println("Artista: " + Lista.get(in2).getArtista());
+                        System.out.println("Genero: " + Lista.get(in2).getGenero());
+                        System.out.println("-------------------------------");
+                    }
+
+                    int idsearch;
+
+                    System.out.print("Ingresa la ID de la cancion que deseas modificar: ");
+                    idsearch = sn.nextInt();
+                    idsearch = idsearch - 1;
+                    sn.nextLine();
+
+                    if (idsearch >= 0 && idsearch < id - 1) {
+
+                        System.out.print("Ingresa el nombre de la cancion: ");
+                        nombreCan = sn.nextLine();
+                        System.out.print("Ingresa el artista de la cancion: ");
+                        artista = sn.nextLine();
+                        System.out.print("Ingresa el genero de la cancion: ");
+                        genero = sn.nextLine();
+
+                        if (nombreCan.equals("") || artista.equals("") || genero.equals("")) {
+                            limpiarConsola();
+                            System.out.println("Error: No puedes dejar espacios en blanco.");
+                        }
+
+                        else {
+                            Lista.remove(idsearch);
+                            Lista.add(idsearch, new CatalogoMusica(idsearch + 1, nombreCan, artista, genero));
+
+                            limpiarConsola();
+                            System.out.println("-------------------------------");
+                            System.out.println("Se actualizo la cancion con ID: " + Lista.get(idsearch).getId());
+                            System.out.println("-------------------------------");
+                            System.out.println("ID: " + Lista.get(idsearch).getId());
+                            System.out.println("Cancion: " + Lista.get(idsearch).getNombreCan());
+                            System.out.println("Artista: " + Lista.get(idsearch).getArtista());
+                            System.out.println("Genero: " + Lista.get(idsearch).getGenero());
+                            System.out.println("-------------------------------");
+
+                        }
+                    } else {
+                        limpiarConsola();
+                        System.out.println("Error: Esa ID no existe");
+                    }
                 }
 
-                int idsearch;
-
-                System.out.print("Ingresa la ID de la cancion que deseas modificar: ");
-                idsearch = sn.nextInt();
-                idsearch = idsearch - 1;
-                sn.nextLine();
-
-                if (idsearch >= 0 && idsearch < id - 1) {
-
-                    System.out.print("Ingresa el nombre de la cancion: ");
-                    nombreCan = sn.nextLine();
-                    System.out.print("Ingresa el artista de la cancion: ");
-                    artista = sn.nextLine();
-                    System.out.print("Ingresa el genero de la cancion: ");
-                    genero = sn.nextLine();
-
-                    if (nombreCan.equals("") || artista.equals("") || genero.equals("")) {
-                        System.out.println("Error: No puedes dejar espacios en blanco.");
-                    }
-
-                    else {
-                        Lista.remove(idsearch);
-                        Lista.add(idsearch, new CatalogoMusica(idsearch + 1, nombreCan, artista, genero));
-
-                        System.out.println("-------------------------------");
-                        System.out.println("Se actualizo la cancion con ID: " + Lista.get(idsearch).getId());
-                        System.out.println("-------------------------------");
-                        System.out.println("ID: " + Lista.get(idsearch).getId());
-                        System.out.println("Cancion: " + Lista.get(idsearch).getNombreCan());
-                        System.out.println("Artista: " + Lista.get(idsearch).getArtista());
-                        System.out.println("Genero: " + Lista.get(idsearch).getGenero());
-                        System.out.println("-------------------------------");
-
-                    }
-                } else {
-                    System.out.println("Error: Esa ID no existe");
+                else {
+                    limpiarConsola();
+                    System.out.println("Error: No hay canciones para modificar.");
                 }
 
             } catch (Exception e) {
+                limpiarConsola();
                 System.out.println("Error: Esa ID no existe");
                 sn.nextLine();
             }
@@ -160,7 +193,7 @@ public class Funciones {
 
                 System.out.print("Ingresa la ID de la cancion que quieres eliminar: ");
                 int idsearch = sn.nextInt();
-                idsearch = idsearch - 1;
+                idsearch = idsearch-1;
 
                 if (idsearch >= 0 && idsearch < id - 1) {
                     Lista.remove(idsearch);
@@ -178,5 +211,11 @@ public class Funciones {
             opt = sn.nextLine();
 
         } while (!(opt.equals("n")));
+    }
+
+    // * Metodo para limpiar la pantalla
+    public void limpiarConsola() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }

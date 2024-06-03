@@ -27,7 +27,7 @@ class LoginFuncion {
     }
 
     public void validacion() {
-        if (user.equals("root") && password.equals("12345a")) {
+        if (user.equals("root") && password.equals("12345a") || user.equals("user") && password.equals("12345b")) {
 
         }
 
