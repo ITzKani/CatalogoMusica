@@ -10,6 +10,7 @@ public class Funciones {
     private static String opt, opt2;
     ArrayList<CatalogoMusica> Lista = new ArrayList<>();
     CatalogoMusica cm = new CatalogoMusica(id, nombreCan, artista, genero);
+    static MenuGeneros mg = new MenuGeneros();
 
     // * Metodo constructor
     public Funciones() {
@@ -84,26 +85,14 @@ public class Funciones {
     // * Metodo de mostrar catalogo (opcion 3 del menu)
     public void mostrarCatalogo() {
         do {
-            limpiarConsola();
-
-            if (Lista.size() > 0) {
-                System.out.println("**Lista de canciones creadas**");
-                System.out.println("-------------------------------");
-                for (int in2 = 0; in2 < Lista.size(); in2++) {
-                    System.out.println("ID: " + Lista.get(in2).getId());
-                    System.out.println("Cancion: " + Lista.get(in2).getNombreCan());
-                    System.out.println("Artista: " + Lista.get(in2).getArtista());
-                    System.out.println("Genero: " + Lista.get(in2).getGenero());
-                    System.out.println("-------------------------------");
-                }
+            try {
+                limpiarConsola();
+                mg.mostrarMenu();
+            } catch (Exception e) {
+                System.out.println("Error: Ingresa una opcion valida.");
             }
-
-            System.out.println("**Catalogo de canciones**");
-            System.out.println("-------------------------------");
-            cm.mostrarCatalogo();
-            System.out.print("Salir del catalogo y/n: ");
+            System.out.print("Volver al menu principal y/n: ");
             opt = sn.nextLine();
-            limpiarConsola();
         } while ((opt.equals("n")));
 
     }
@@ -193,7 +182,7 @@ public class Funciones {
 
                 System.out.print("Ingresa la ID de la cancion que quieres eliminar: ");
                 int idsearch = sn.nextInt();
-                idsearch = idsearch-1;
+                idsearch = idsearch - 1;
 
                 if (idsearch >= 0 && idsearch < id - 1) {
                     Lista.remove(idsearch);

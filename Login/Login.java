@@ -25,7 +25,8 @@ class Login {
             lg.limpiarConsola();
             lg.validacion();
 
-        } while (!(lg.getUser().equals("root") && lg.getPassword().equals("12345a") || lg.getUser().equals("user") && lg.getPassword().equals("12345b")));
+        } while (!(lg.getUser().equals("root") && lg.getPassword().equals("12345a")
+                || lg.getUser().equals("user") && lg.getPassword().equals("12345b")));
 
     }
 }
